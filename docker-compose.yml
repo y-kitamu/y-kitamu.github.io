@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  blog:
+    image: jekyll/jekyll:latest
+    volumes:
+      - $PWD/docs:/srv/jekyll
+    ports:
+      - "4444:4000"
+    command: jekyll serve --force_polling
+    # command: jekyll build  # create new jekyll site
+    restart: always
