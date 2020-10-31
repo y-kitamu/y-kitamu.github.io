@@ -1,7 +1,9 @@
 ---
-layout: default
+layout: post
 title: ブログはじめます。
+categories: その他
 ---
+
 <p>
 日々の記録や勉強したことのメモにブログを始めることにしました。
 読んだ論文のまとめとか、プログラミングについて勉強したこととか書いていきたいと思います。
@@ -9,20 +11,24 @@ title: ブログはじめます。
 </p>
 
 <p>
-まずは、このブログの環境構築についてまとめておこうと思います。
-このブログはgithub pages + jekyll (+ org-mode)を使用しています。
-github pagesはgithubリポジトリからウェブサイトを生成するサービスです。
-githubのアカウント名に紐付いたURLが使用できます。
-jekyllは静的サイトジェネレーターで、jekyllを使用することでgithub pages上で簡単にブログが作れます。
+  まずは、このブログの環境構築についてまとめておこうと思います。
+  このブログはgithub pages + jekyll (+ org-mode)を使用しています。
+  github pagesはgithubリポジトリからウェブサイトを生成するサービスです。
+  githubのアカウント名に紐付いたURLが使用できます。
+  jekyllは静的サイトジェネレーターで、jekyllを使用することでgithub pages上で簡単にブログが作れます。
 </p>
 
 <p>
-今回は、ローカルでも動作確認ができるように、jekyllのDocker imageを使用してブログを生成しました。
-docker-compose.ymlは以下のような感じです。
+  今回は、ローカルでも動作確認ができるように、jekyllのDocker imageを使用してブログを生成しました。
+  docker-compose.ymlは以下のような感じです。
 </p>
 
-<div class="org-src-container">
-<pre class="src src-yml">version: "3.7"
+<figure>
+  <figcaption>
+    <div class="figcaption">docker-compose.yml</div>
+  </figcaption>
+  {% highlight yaml %}
+version: "3.7"
 
 services:
   blog:
@@ -34,8 +40,8 @@ services:
     command: jekyll serve --force_polling
     # command: jekyll build  # create new jekyll site
     restart: always
-</pre>
-</div>
+  {% endhighlight %}
+</figure>
 
 <p>
 一番最初にjekyllの各種設定ファイルを生成する際は<code class="src src-bash">command: jekyll build</code>
@@ -59,19 +65,25 @@ htmlに変換して表示しましょうという方針です。
 </p>
 
 <p>
-<a href="https://orgmode.org/worg/org-tutorials/org-jekyll.html">https://orgmode.org/worg/org-tutorials/org-jekyll.html</a>
+  <a href="https://orgmode.org/worg/org-tutorials/org-jekyll.html">https://orgmode.org/worg/org-tutorials/org-jekyll.html</a>
 </p>
 
 <p>
-ここに書かれている設定を順番に行っていきます。
-まず、orgファイル保管用のディレクトリを作成します。
-このディレクトリの構成は、jekyllのディレクトリ構成と対応するようにします。
-(例えばjekyllの_postに入る記事のorgファイルは、このディレクトリの_post以下に配置する。)
-つぎに、init.elに設定を追加します。
+  ここに書かれている設定を順番に行っていきます。
+  まず、orgファイル保管用のディレクトリを作成します。
+  このディレクトリの構成は、jekyllのディレクトリ構成と対応するようにします。
+  (例えばjekyllの_postに入る記事のorgファイルは、このディレクトリの_post以下に配置する。)
+  つぎに、init.elに設定を追加します。
 </p>
 
-<div class="org-src-container">
-<pre class="src src-elisp">(setq org-publish-project-alist
+<!-- <div class="org-src-container">
+     <pre class="src src-elisp"> -->
+<figure>
+  <figcaption>
+    <div class="figcaption">init.el</div>
+  </figcaption>
+  {% highlight emacs-lisp %}
+(setq org-publish-project-alist
       '(
         ("org-blog"
          :base-directory "~/Documents/kitamura.github.io/org/"  ;; orgファイルが格納されているパス
@@ -90,9 +102,11 @@ htmlに変換して表示しましょうという方針です。
          :recursive t
          :publishing-function org-publish-attachment)
         ("blog" :components ("org-blog" "org-blog-static"))
-        ))
-</pre>
-</div>
+))
+{% endhighlight %}
+</figure>
+<!-- </pre>
+     </div> -->
 
 <p>
 org-publish-project-alistにプロジェクト名とその設定を書いておくと、
