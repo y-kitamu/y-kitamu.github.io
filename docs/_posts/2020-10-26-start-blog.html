@@ -2,6 +2,7 @@
 layout: default
 title: ブログはじめます。
 ---
+
 <p>
 日々の記録や勉強したことのメモにブログを始めることにしました。
 読んだ論文のまとめとか、プログラミングについて勉強したこととか書いていきたいと思います。
@@ -35,7 +36,7 @@ services:
     command: jekyll serve --force_polling
     # command: jekyll build  # create new jekyll site
     restart: always
-{%% endhighlight %%}
+{% endhighlight %}
 </figure>
 
 <p>
@@ -93,7 +94,7 @@ htmlに変換して表示しましょうという方針です。
          :publishing-function org-publish-attachment)
         ("blog" :components ("org-blog" "org-blog-static"))
         ))
-{%% endhighlight %%}
+{% endhighlight %}
 </figure>
 
 <p>
