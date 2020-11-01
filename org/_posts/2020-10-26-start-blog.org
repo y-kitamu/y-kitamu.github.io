@@ -20,7 +20,8 @@ jekyllは静的サイトジェネレーターで、jekyllを使用すること�
 今回は、ローカルでも動作確認ができるように、jekyllのDocker imageを使用してブログを生成しました。
 docker-compose.ymlは以下のような感じです。
 
-#+BEGIN_SRC yml :tangle docker-compose.yml
+#+name: docker-compose.yml
+#+BEGIN_SRC yml
 version: "3.7"
 
 services:
@@ -58,7 +59,8 @@ https://orgmode.org/worg/org-tutorials/org-jekyll.html
 (例えばjekyllの_postに入る記事のorgファイルは、このディレクトリの_post以下に配置する。)
 つぎに、init.elに設定を追加します。
 
-#+BEGIN_SRC elisp :tangle init.el
+#+name: init.el
+#+BEGIN_SRC elisp
 (setq org-publish-project-alist
       '(
         ("org-blog"
