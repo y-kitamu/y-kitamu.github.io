@@ -1,0 +1,19 @@
+#+TITLE: pip install --editable でハマった
+#+AUTHOR: Y. Kitamu
+#+OPTIONS: ^:{}
+#+BEGIN_EXPORT html
+---
+layout: post
+title: pip install --editable でハマった
+---
+#+END_EXPORT
+
+src_shell{pip install --editable .}などとしてインストールすると、
+開発中のパッケージの変更がそのまま環境に反映されて便利なのでよく使ってました。
+ただ、新しいパッケージを作成したときに、こいつのせいでModuleNotFoundのエラーから抜け出せずハマってしまいました。
+setup.pyをpythonの公式ドキュメント通りに書いたのに動かないのはなぜだと調べていると、
+--editableが悪さをしていることが発覚しました。
+このオプションを消してインストールすると問題なくインポートもできました。
+stack overflowやpipのIssueにも同じような事象が多数上がっており、
+どうやら多くの先人達もつまづいてきたようでした。
+うーん、、、
