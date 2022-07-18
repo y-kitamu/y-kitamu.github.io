@@ -8,3 +8,10 @@ Thumbs.db
 
 .rbenv-version
 .rvmrc
+
+node_modules/
+.cache/
+public
+src/gatsby-types.d.ts
+
+.log/
