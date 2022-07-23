@@ -6,15 +6,15 @@ import SearchIcon from "@mui/icons-material/Search";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
-interface HeaderProps {
+type HeaderProps = {
   sections: ReadonlyArray<{
     title: string;
     url: string;
   }>;
   title: string;
-}
+};
 
-export default function Header(props: HeaderProps) {
+const BlogHeader = (props: HeaderProps) => {
   const { sections, title } = props;
 
   return (
@@ -49,7 +49,7 @@ export default function Header(props: HeaderProps) {
             noWrap
             key={section.title}
             variant="body2"
-            href={section.url}
+            href={`/blog/${section.title.toLowerCase()}`}
             sx={{ p: 1, flexShrink: 0 }}
           >
             {section.title}
@@ -58,4 +58,6 @@ export default function Header(props: HeaderProps) {
       </Toolbar>
     </React.Fragment>
   );
-}
+};
+
+export default BlogHeader;

@@ -2,8 +2,9 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `YK's tech blog`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `YK's Homepage`,
+    siteUrl: `https://y-kitamu.github.io`,
+    blogTitle: `YK's Blog`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -16,6 +17,8 @@ const config: GatsbyConfig = {
         trackingId: "323532157",
       },
     },
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
     {
       resolve: "gatsby-source-filesystem",
       options: {

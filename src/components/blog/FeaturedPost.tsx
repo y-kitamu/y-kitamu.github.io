@@ -6,7 +6,7 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 
-interface FeaturedPostProps {
+type FeaturedPostProps = {
   post: {
     date: string;
     description: string;
@@ -14,9 +14,9 @@ interface FeaturedPostProps {
     imageLabel: string;
     title: string;
   };
-}
+};
 
-export default function FeaturedPost(props: FeaturedPostProps) {
+const BlogFeaturedPost = (props: FeaturedPostProps) => {
   const { post } = props;
 
   return (
@@ -47,4 +47,6 @@ export default function FeaturedPost(props: FeaturedPostProps) {
       </CardActionArea>
     </Grid>
   );
-}
+};
+
+export default BlogFeaturedPost;

@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 
-interface MainFeaturedPostProps {
+type MainFeaturedPostProps = {
   post: {
     description: string;
     image: string;
@@ -13,9 +13,9 @@ interface MainFeaturedPostProps {
     linkText: string;
     title: string;
   };
-}
+};
 
-export default function MainFeaturedPost(props: MainFeaturedPostProps) {
+const BlogMainFeaturedPost = (props: MainFeaturedPostProps) => {
   const { post } = props;
 
   return (
@@ -77,4 +77,6 @@ export default function MainFeaturedPost(props: MainFeaturedPostProps) {
       </Grid>
     </Paper>
   );
-}
+};
+
+export default BlogMainFeaturedPost;

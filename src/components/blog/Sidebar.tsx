@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
-interface SidebarProps {
+type SidebarProps = {
   archives: ReadonlyArray<{
     url: string;
     title: string;
@@ -16,9 +16,9 @@ interface SidebarProps {
     name: string;
   }>;
   title: string;
-}
+};
 
-export default function Sidebar(props: SidebarProps) {
+const BlogSidebar = (props: SidebarProps) => {
   const { archives, description, social, title } = props;
 
   return (
@@ -61,4 +61,6 @@ export default function Sidebar(props: SidebarProps) {
       ))}
     </Grid>
   );
-}
+};
+
+export default BlogSidebar;

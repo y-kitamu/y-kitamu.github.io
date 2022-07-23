@@ -3,26 +3,43 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
+import { graphql, useStaticQuery } from "gatsby";
 
-function Copyright() {
+type CopyrightProps = {
+  siteTitle: string;
+  siteUrl: string;
+};
+
+const Copyright = ({ siteTitle, siteUrl }: CopyrightProps) => {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href={siteUrl}>
+        {siteTitle}
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
   );
-}
+};
 
-interface FooterProps {
+type FooterProps = {
   description: string;
   title: string;
-}
+};
 
-export default function Footer(props: FooterProps) {
+const BlogFooter = (props: FooterProps) => {
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          siteUrl
+        }
+      }
+    }
+  `);
+
   const { description, title } = props;
 
   return (
@@ -39,8 +56,13 @@ export default function Footer(props: FooterProps) {
         >
           {description}
         </Typography>
-        <Copyright />
+        <Copyright
+          siteTitle={data.site.siteMetadata.title as string}
+          siteUrl={data.site.siteMetadata.siteUrl as string}
+        />
       </Container>
     </Box>
   );
-}
+};
+
+export default BlogFooter;
