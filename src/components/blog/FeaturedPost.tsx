@@ -7,13 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 
 type FeaturedPostProps = {
-  post: {
-    date: string;
-    description: string;
-    image: string;
-    imageLabel: string;
-    title: string;
-  };
+  post: BlogPost;
 };
 
 const BlogFeaturedPost = (props: FeaturedPostProps) => {
@@ -21,17 +15,20 @@ const BlogFeaturedPost = (props: FeaturedPostProps) => {
 
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href="#">
+      <CardActionArea
+        component="a"
+        href={`/blog/${post.slug.replace(".", "-")}`}
+      >
         <Card sx={{ display: "flex" }}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" variant="h5">
-              {post.title}
+              {post.frontmatter.title}
             </Typography>
             <Typography variant="subtitle1" color="text.secondary">
-              {post.date}
+              {post.frontmatter.date}
             </Typography>
             <Typography variant="subtitle1" paragraph>
-              {post.description}
+              {post.rawBody.substring(0, 100)}
             </Typography>
             <Typography variant="subtitle1" color="primary">
               Continue reading...
@@ -40,8 +37,6 @@ const BlogFeaturedPost = (props: FeaturedPostProps) => {
           <CardMedia
             component="img"
             sx={{ width: 160, display: { xs: "none", sm: "block" } }}
-            image={post.image}
-            alt={post.imageLabel}
           />
         </Card>
       </CardActionArea>

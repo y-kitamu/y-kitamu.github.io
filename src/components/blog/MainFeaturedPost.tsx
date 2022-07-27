@@ -2,17 +2,11 @@ import * as React from "react";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
+import { CardActionArea } from "@mui/material";
 
 type MainFeaturedPostProps = {
-  post: {
-    description: string;
-    image: string;
-    imageText: string;
-    linkText: string;
-    title: string;
-  };
+  post: BlogPost;
 };
 
 const BlogMainFeaturedPost = (props: MainFeaturedPostProps) => {
@@ -28,16 +22,16 @@ const BlogMainFeaturedPost = (props: MainFeaturedPostProps) => {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        backgroundImage: `url(${post.image})`,
+        // backgroundImage: `url(${post.image})`,
       }}
     >
       {/* Increase the priority of the hero background image */}
       {
-        <img
-          style={{ display: "none" }}
-          src={post.image}
-          alt={post.imageText}
-        />
+        // <img
+        //   style={{ display: "none" }}
+        //   src={post.image}
+        //   alt={post.imageText}
+        // />
       }
       <Box
         sx={{
@@ -50,30 +44,35 @@ const BlogMainFeaturedPost = (props: MainFeaturedPostProps) => {
         }}
       />
       <Grid container>
-        <Grid item md={6}>
-          <Box
-            sx={{
-              position: "relative",
-              p: { xs: 3, md: 6 },
-              pr: { md: 0 },
-            }}
-          >
-            <Typography
-              component="h1"
-              variant="h3"
-              color="inherit"
-              gutterBottom
+        <CardActionArea
+          component="a"
+          href={`/blog/${post.slug.replace(".", "-")}`}
+        >
+          <Grid item md={6}>
+            <Box
+              sx={{
+                position: "relative",
+                p: { xs: 3, md: 6 },
+                pr: { md: 0 },
+              }}
             >
-              {post.title}
-            </Typography>
-            <Typography variant="h5" color="inherit" paragraph>
-              {post.description}
-            </Typography>
-            <Link variant="subtitle1" href="#">
-              {post.linkText}
-            </Link>
-          </Box>
-        </Grid>
+              <Typography
+                component="h1"
+                variant="h3"
+                color="inherit"
+                gutterBottom
+              >
+                {post.frontmatter.title}
+              </Typography>
+              <Typography variant="h5" color="inherit" paragraph>
+                {post.rawBody.substring(0, 100)}
+              </Typography>
+              <Typography variant="subtitle1" color="primary">
+                {"Continue reading…"}
+              </Typography>
+            </Box>
+          </Grid>
+        </CardActionArea>
       </Grid>
     </Paper>
   );

@@ -4,42 +4,11 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { graphql } from "gatsby";
-import BLogMainFeaturedPost from "../../components/blog/MainFeaturedPost";
+import BlogMainFeaturedPost from "../../components/blog/MainFeaturedPost";
 import BlogFeaturedPost from "../../components/blog/FeaturedPost";
 import BlogMain from "../../components/blog/Main";
 import BlogSidebar from "../../components/blog/Sidebar";
 import BlogLayout from "../../components/blog/layout";
-
-const mainFeaturedPost = {
-  title: "Title of a longer featured blog post",
-  description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: "https://source.unsplash.com/random",
-  imageText: "main image description",
-  linkText: "Continue reading…",
-};
-
-const featuredPosts = [
-  {
-    title: "Featured post",
-    date: "Nov 12",
-    description:
-      "This is a wider card with supporting text below as a natural lead-in to additional content.",
-    image: "https://source.unsplash.com/random",
-    imageLabel: "Image Text",
-  },
-  {
-    title: "Post title",
-    date: "Nov 11",
-    description:
-      "This is a wider card with supporting text below as a natural lead-in to additional content.",
-    image: "https://source.unsplash.com/random",
-    imageLabel: "Image Text",
-  },
-];
-
-// const posts = [post1, post2, post3];
-// const posts = [];
 
 const sidebar = {
   title: "About",
@@ -65,22 +34,32 @@ const sidebar = {
   ],
 };
 
+const MDX_HEADER_REGEX = /---[^]*---[\n\r]*/;
+
 const BlogMainPage = ({ data }: { data: any }) => {
-  if (data.allMdx.nodes.length === 0) {
+  if (data.featuredPosts.nodes.length === 0) {
     return <BlogLayout>{"No articles posted."}</BlogLayout>;
   }
-  const latestPost = data.allMdx.nodes[0];
-  const recentPosts = [data.allMdx.nodes[1], data.allMdx.nodes[2]];
+
+  data.featuredPosts.nodes.map((node: BlogPost) => {
+    node.rawBody = node.rawBody.replace(MDX_HEADER_REGEX, "");
+  });
+
+  const latestPost: BlogPost = data.featuredPosts.nodes[0];
+  const recentPosts: BlogPost[] = [
+    data.featuredPosts.nodes[1],
+    data.featuredPosts.nodes[2],
+  ];
   return (
     <BlogLayout>
-      <BLogMainFeaturedPost post={mainFeaturedPost} />
+      <BlogMainFeaturedPost post={latestPost} />
       <Grid container spacing={4}>
-        {featuredPosts.map((post) => (
-          <BlogFeaturedPost key={post.title} post={latestPost} />
+        {recentPosts.map((post) => (
+          <BlogFeaturedPost key={post.frontmatter.title} post={post} />
         ))}
       </Grid>
       <Grid container spacing={5} sx={{ mt: 3 }}>
-        <BlogMain posts={recentPosts} />
+        <BlogMain posts={data.otherPosts.nodes} />
         <BlogSidebar
           title={sidebar.title}
           description={sidebar.description}
@@ -94,7 +73,10 @@ const BlogMainPage = ({ data }: { data: any }) => {
 
 export const query = graphql`
   query {
-    allMdx(sort: { fields: frontmatter___date, order: DESC }) {
+    featuredPosts: allMdx(
+      limit: 3
+      sort: { fields: frontmatter___date, order: DESC }
+    ) {
       nodes {
         frontmatter {
           date(formatString: "MMMM D, YYYY")
@@ -102,7 +84,19 @@ export const query = graphql`
         }
         slug
         id
-        body
+        rawBody
+      }
+    }
+    otherPosts: allMdx(
+      skip: 3
+      sort: { fields: frontmatter___date, order: DESC }
+    ) {
+      nodes {
+        frontmatter {
+          date(formatString: "MMMM D, YYYY")
+          title
+        }
+        slug
       }
     }
   }
