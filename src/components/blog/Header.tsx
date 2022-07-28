@@ -16,17 +16,27 @@ const BlogHeader = (props: HeaderProps) => {
 
   return (
     <React.Fragment>
-      <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Typography
-          component="h2"
-          variant="h5"
-          color="inherit"
-          align="center"
-          noWrap
-          sx={{ flex: 1 }}
-        >
-          {title}
-        </Typography>
+      <Toolbar
+        sx={{
+          borderBottom: 1,
+          borderColor: "divider",
+          textAlign: "center",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Link href="/blog" underline="hover" color="inherit">
+          <Typography
+            component="h2"
+            variant="h5"
+            color="inherit"
+            align="center"
+            noWrap
+            sx={{ flex: 1 }}
+          >
+            {title}
+          </Typography>
+        </Link>
       </Toolbar>
       <Toolbar
         component="nav"

@@ -14,7 +14,7 @@ const Copyright = ({ siteTitle, siteUrl }: CopyrightProps) => {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href={siteUrl}>
+      <Link color="inherit" href="/">
         {siteTitle}
       </Link>{" "}
       {new Date().getFullYear()}

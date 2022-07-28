@@ -2,7 +2,13 @@ import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import { Card, CardActionArea, CardContent } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  Pagination,
+} from "@mui/material";
 
 const POSTS_PER_PAGE = 10;
 
@@ -56,6 +62,14 @@ const BlogMain = (props: MainProps) => {
             </CardActionArea>
           );
         })}
+      <Divider />
+      <Box sx={{ justifyContent: "center", display: "flex" }}>
+        <Pagination
+          page={currentPage + 1}
+          onChange={(_, value) => setCurrentPage(value - 1)}
+          count={(posts.length + POSTS_PER_PAGE - 1) / POSTS_PER_PAGE}
+        />
+      </Box>
     </Grid>
   );
 };
