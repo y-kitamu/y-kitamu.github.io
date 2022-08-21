@@ -10,6 +10,7 @@ import {
   TableRow,
   TableCell,
 } from "@mui/material";
+import "../../style.css";
 
 const components = {
   // h1: (props: any) => <Typography component="h1" variant="h3" {...props} />,
@@ -35,7 +36,6 @@ const components = {
 };
 
 const BlogPostTemplate = ({ data, children }: any) => {
-  console.log(children);
   return (
     <MDXProvider components={components}>
       <BlogLayout>
