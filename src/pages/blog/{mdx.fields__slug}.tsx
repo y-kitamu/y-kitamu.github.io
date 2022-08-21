@@ -1,6 +1,5 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { MDXRenderer } from "gatsby-plugin-mdx";
 import { MDXProvider } from "@mdx-js/react";
 import BlogLayout from "../../components/blog/layout";
 import {
@@ -35,7 +34,8 @@ const components = {
   th: (props: any) => <TableCell variant={"head"}>{props.children}</TableCell>,
 };
 
-const BlogPost = ({ data }: any) => {
+const BlogPostTemplate = ({ data, children }: any) => {
+  console.log(children);
   return (
     <MDXProvider components={components}>
       <BlogLayout>
@@ -44,7 +44,7 @@ const BlogPost = ({ data }: any) => {
           {data.mdx.frontmatter.title}
         </Typography>
         <Divider />
-        <MDXRenderer>{data.mdx.body}</MDXRenderer>
+        {children}
       </BlogLayout>
     </MDXProvider>
   );
@@ -62,4 +62,4 @@ export const query = graphql`
   }
 `;
 
-export default BlogPost;
+export default BlogPostTemplate;

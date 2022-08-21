@@ -3,12 +3,14 @@ export type BlogPostProperty = {
     title: string;
     date: string;
   };
-  slug: string;
+  fields: {
+    slug: string;
+  };
 };
 
 export type BlogPost = BlogPostProperty & {
   id: string;
-  rawBody: string;
+  body: string;
 };
 
 export type Locale = "en" | "ja";

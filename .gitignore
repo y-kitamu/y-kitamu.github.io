@@ -15,3 +15,5 @@ public
 src/gatsby-types.d.ts
 
 .log/
+
+package-lock.json

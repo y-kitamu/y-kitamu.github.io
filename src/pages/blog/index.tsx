@@ -17,7 +17,7 @@ const BlogMainPage = ({ data }: { data: any }) => {
   }
 
   data.featuredPosts.nodes.map((node: BlogPost) => {
-    node.rawBody = node.rawBody.replace(MDX_HEADER_REGEX, "");
+    node.body = node.body.replace(MDX_HEADER_REGEX, "");
   });
 
   const latestPost: BlogPost = data.featuredPosts.nodes[0];
@@ -73,9 +73,11 @@ export const query = graphql`
           date(formatString: "MMMM D, YYYY")
           title
         }
-        slug
+        fields {
+          slug
+        }
         id
-        rawBody
+        body
       }
     }
     otherPosts: allMdx(
@@ -87,7 +89,9 @@ export const query = graphql`
           date(formatString: "MMMM D, YYYY")
           title
         }
-        slug
+        fields {
+          slug
+        }
       }
     }
   }

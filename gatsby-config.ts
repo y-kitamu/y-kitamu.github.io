@@ -30,11 +30,8 @@ const config: GatsbyConfig = {
       resolve: "gatsby-plugin-mdx",
       options: {
         mdxOptions: {
-          remarkPlugins: [
-            // Add GitHub Flavored Markdown (GFM) support
-            // npm install remark-gfm@^1
-            require(`remark-gfm`),
-          ],
+          remarkPlugins: [require(`remark-gfm`)],
+          rehypePlugins: [],
         },
       },
     },

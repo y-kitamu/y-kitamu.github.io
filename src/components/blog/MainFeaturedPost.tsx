@@ -46,7 +46,7 @@ const BlogMainFeaturedPost = (props: MainFeaturedPostProps) => {
       <Grid container>
         <CardActionArea
           component="a"
-          href={`/blog/${post.slug.replace(".", "-")}`}
+          href={`/blog/${post.fields.slug.replace(".", "-")}`}
         >
           <Grid item md={6}>
             <Box
@@ -65,7 +65,7 @@ const BlogMainFeaturedPost = (props: MainFeaturedPostProps) => {
                 {post.frontmatter.title}
               </Typography>
               <Typography variant="h5" color="inherit" paragraph>
-                {post.rawBody.substring(0, 100)}
+                {post.body.substring(0, 100)}
               </Typography>
               <Typography variant="subtitle1" color="primary">
                 {"Continue reading…"}
