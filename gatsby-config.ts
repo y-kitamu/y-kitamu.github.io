@@ -26,7 +26,18 @@ const config: GatsbyConfig = {
         path: `${__dirname}/blog`,
       },
     },
-    "gatsby-plugin-mdx",
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        mdxOptions: {
+          remarkPlugins: [
+            // Add GitHub Flavored Markdown (GFM) support
+            // npm install remark-gfm@^1
+            require(`remark-gfm`),
+          ],
+        },
+      },
+    },
   ],
 };
 
