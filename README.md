@@ -8,7 +8,6 @@ cd my-gatsby-site/
 npm run develop
 ```
 
-
 ## Gatsby links
 - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
 
