@@ -34,10 +34,7 @@ const BlogLayout = ({ children }: props) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
-        <BlogHeader
-          title={data.site.siteMetadata.title}
-          sections={categories}
-        />
+        <BlogHeader title={data.site.siteMetadata.title} />
         <main>{children}</main>
       </Container>
       <BlogFooter title="" description="" />

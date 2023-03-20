@@ -12,7 +12,7 @@ type HeaderProps = {
 };
 
 const BlogHeader = (props: HeaderProps) => {
-  const { sections, title } = props;
+  const { title } = props;
 
   return (
     <React.Fragment>
@@ -37,24 +37,6 @@ const BlogHeader = (props: HeaderProps) => {
             {title}
           </Typography>
         </Link>
-      </Toolbar>
-      <Toolbar
-        component="nav"
-        variant="dense"
-        sx={{ justifyContent: "space-between", overflowX: "auto" }}
-      >
-        {sections.map((section) => (
-          <Link
-            color="inherit"
-            noWrap
-            key={section.title}
-            variant="body2"
-            href={`/blog/${section.title.toLowerCase()}`}
-            sx={{ p: 1, flexShrink: 0 }}
-          >
-            {section.title}
-          </Link>
-        ))}
       </Toolbar>
     </React.Fragment>
   );

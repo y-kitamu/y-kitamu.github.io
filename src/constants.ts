@@ -8,7 +8,7 @@ export type BlogPostProperty = {
   };
 };
 
-export type BlogPost = BlogPostProperty & {
+export type BlogPostData = BlogPostProperty & {
   id: string;
   body: string;
 };
