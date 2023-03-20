@@ -8,6 +8,12 @@ cd my-gatsby-site/
 npm run develop
 ```
 
+- deploy to github pages
+Automatically deploys when pushed to master branch, or 
+```shell
+npm run deploy
+```
+
 ## Gatsby links
 - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
 
