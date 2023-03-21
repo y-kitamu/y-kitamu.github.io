@@ -57,15 +57,16 @@ const BlogMainPage = ({ data }: { data: any }) => {
         }}
       >
         <BlogPost
+          key={latestPost.fields.slug}
           post={latestPost}
           theme={{ title: "h4", date: "h5", body: "h5", more: "h5" }}
         />
       </Paper>
-      {recentPosts.map((post) => {
+      {recentPosts.map((post, idx) => {
         if (post !== undefined) {
-          return <BlogPost key={post.frontmatter.title} post={post} />;
+          return <BlogPost key={post.fields.slug} post={post} />;
         } else {
-          return <></>;
+          return <div key={idx}></div>;
         }
       })}
       <Grid container spacing={5} sx={{ mt: 3 }}>
@@ -85,7 +86,7 @@ const BlogMainPage = ({ data }: { data: any }) => {
           </Typography>
           <Divider />
           {currentPagePosts.map((post) => (
-            <BlogPost post={post} />
+            <BlogPost key={post.fields.slug} post={post} />
           ))}
 
           <Divider />
@@ -93,7 +94,9 @@ const BlogMainPage = ({ data }: { data: any }) => {
             <Pagination
               page={currentPage + 1}
               onChange={(_, value) => setCurrentPage(value - 1)}
-              count={(numOtherPosts + POSTS_PER_PAGE - 1) / POSTS_PER_PAGE}
+              count={Math.floor(
+                (numOtherPosts + POSTS_PER_PAGE - 1) / POSTS_PER_PAGE
+              )}
             />
           </Box>
         </Grid>
@@ -109,10 +112,7 @@ const BlogMainPage = ({ data }: { data: any }) => {
 
 export const query = graphql`
   query {
-    featuredPosts: allMdx(
-      limit: 3
-      sort: { fields: frontmatter___date, order: DESC }
-    ) {
+    featuredPosts: allMdx(limit: 3, sort: { frontmatter: { date: DESC } }) {
       nodes {
         frontmatter {
           date(formatString: "MMMM D, YYYY")
@@ -125,10 +125,7 @@ export const query = graphql`
         body
       }
     }
-    otherPosts: allMdx(
-      skip: 3
-      sort: { fields: frontmatter___date, order: DESC }
-    ) {
+    otherPosts: allMdx(skip: 3, sort: { frontmatter: { date: DESC } }) {
       nodes {
         frontmatter {
           date(formatString: "MMMM D, YYYY")

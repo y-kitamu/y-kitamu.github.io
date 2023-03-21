@@ -13,10 +13,9 @@ import {
 import "../../style.css";
 
 const components = {
-  // h1: (props: any) => <Typography component="h1" variant="h3" {...props} />,
   p: (props: any) => (
     <Box sx={{ ml: "2rem" }}>
-      <Typography component="p" variant="body1" {...props} />
+      <Typography component="span" variant="body1" {...props} />
     </Box>
   ),
   h1: (props: any) => (

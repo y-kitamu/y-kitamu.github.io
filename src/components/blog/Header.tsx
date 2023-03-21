@@ -4,10 +4,6 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
 type HeaderProps = {
-  sections: ReadonlyArray<{
-    title: string;
-    url: string;
-  }>;
   title: string;
 };
 

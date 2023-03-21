@@ -1,4 +1,4 @@
-const slugify = require(`@sindresorhus/slugify`);
+const slugify = require(`slugify`);
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;

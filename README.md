@@ -14,6 +14,10 @@ Automatically deploys when pushed to master branch, or
 npm run deploy
 ```
 
+## memo
+
+- remark-gfmのversionは1.xから上げないこと (https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/#mdxoptions)
+
 ## Gatsby links
 - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
 
