@@ -42,7 +42,7 @@ const DEFAULT_THEME: BlogPostTheme = {
 };
 
 // markdown中の画像pathに一致するregex
-const MDX_IMAGE_REGEX = /\((http|\.).*\.(png|jpg|jpeg|gif|bmp)/i;
+const MDX_IMAGE_REGEX = /(\(|")(http|\.).*\.(png|jpg|jpeg|gif|bmp).* /i;
 
 const isBlogPostData = (arg: unknown): arg is BlogPostData => {
   return (arg as BlogPostData).body !== undefined;
@@ -56,7 +56,7 @@ const isBlogPostData = (arg: unknown): arg is BlogPostData => {
 const getImagePath = (body: string): string => {
   const matches = body.match(MDX_IMAGE_REGEX);
   if (matches) {
-    return matches[0].slice(1);
+    return matches[0].slice(1, -1);
   }
   return default_image;
 };
