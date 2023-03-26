@@ -2,7 +2,7 @@ const slugify = require(`slugify`);
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
-  if (node.internal.type === `Mdx`) {
+  if (node.internal.type === "MarkdownRemark") {
     createNodeField({
       node,
       name: `slug`,

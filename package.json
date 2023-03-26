@@ -23,6 +23,7 @@
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.13",
     "gatsby": "^5.7.0",
+    "gatsby-plugin-catch-links": "^5.8.0",
     "gatsby-plugin-google-analytics": "^5.7.0",
     "gatsby-plugin-image": "^3.7.0",
     "gatsby-plugin-mdx": "^5.7.0",

@@ -19,7 +19,6 @@ const config: GatsbyConfig = {
     },
     "gatsby-plugin-image",
     `gatsby-transformer-sharp`,
-    `gatsby-transformer-remark`,
     "gatsby-plugin-sharp",
     {
       resolve: "gatsby-source-filesystem",
@@ -29,9 +28,11 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "gatsby-plugin-mdx",
+      resolve: `gatsby-transformer-remark`,
       options: {
-        gatsbyRemarkPlugins: [
+        footnotes: true,
+        gfm: true,
+        plugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -41,10 +42,7 @@ const config: GatsbyConfig = {
             },
           },
         ],
-        mdxOptions: {
-          remarkPlugins: [require(`remark-gfm`)],
-          rehypePlugins: [],
-        },
+        jsFrontmatterEngine: false,
       },
     },
   ],

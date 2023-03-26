@@ -34,16 +34,18 @@ const components = {
   th: (props: any) => <TableCell variant={"head"}>{props.children}</TableCell>,
 };
 
-const BlogPostTemplate = ({ data, children }: any) => {
+const BlogPostTemplate = (props: any) => {
+  console.log("props: ", props);
+  const { data } = props;
   return (
     <MDXProvider components={components}>
       <BlogLayout>
-        <p>{data.mdx.frontmatter.date}</p>
+        <p>{data.markdownRemark.frontmatter.date}</p>
         <Typography component="h1" variant="h3">
-          {data.mdx.frontmatter.title}
+          {data.markdownRemark.frontmatter.title}
         </Typography>
         <Divider />
-        {children}
+        <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
       </BlogLayout>
     </MDXProvider>
   );
@@ -51,12 +53,12 @@ const BlogPostTemplate = ({ data, children }: any) => {
 
 export const query = graphql`
   query ($id: String) {
-    mdx(id: { eq: $id }) {
+    markdownRemark(id: { eq: $id }) {
       frontmatter {
         title
         date(formatString: "MMMM D, YYYY")
       }
-      body
+      html
     }
   }
 `;

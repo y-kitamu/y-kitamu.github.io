@@ -19,7 +19,7 @@ const BlogMainPage = ({ data }: { data: any }) => {
   }
 
   data.featuredPosts.nodes.map((node: BlogPostData) => {
-    node.body = node.body.replace(MDX_HEADER_REGEX, "");
+    node.rawMarkdownBody = node.rawMarkdownBody.replace(MDX_HEADER_REGEX, "");
   });
 
   const latestPost: BlogPostData = data.featuredPosts.nodes[0];
@@ -112,7 +112,10 @@ const BlogMainPage = ({ data }: { data: any }) => {
 
 export const query = graphql`
   query {
-    featuredPosts: allMdx(limit: 3, sort: { frontmatter: { date: DESC } }) {
+    featuredPosts: allMarkdownRemark(
+      limit: 3
+      sort: { frontmatter: { date: DESC } }
+    ) {
       nodes {
         frontmatter {
           date(formatString: "MMMM D, YYYY")
@@ -122,10 +125,13 @@ export const query = graphql`
           slug
         }
         id
-        body
+        rawMarkdownBody
       }
     }
-    otherPosts: allMdx(skip: 3, sort: { frontmatter: { date: DESC } }) {
+    otherPosts: allMarkdownRemark(
+      skip: 3
+      sort: { frontmatter: { date: DESC } }
+    ) {
       nodes {
         frontmatter {
           date(formatString: "MMMM D, YYYY")

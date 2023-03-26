@@ -10,7 +10,7 @@ export type BlogPostProperty = {
 
 export type BlogPostData = BlogPostProperty & {
   id: string;
-  body: string;
+  rawMarkdownBody: string;
 };
 
 export type Locale = "en" | "ja";

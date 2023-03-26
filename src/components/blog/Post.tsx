@@ -45,7 +45,7 @@ const DEFAULT_THEME: BlogPostTheme = {
 const MDX_IMAGE_REGEX = /(\(|")(http|\.).*\.(png|jpg|jpeg|gif|bmp).* /i;
 
 const isBlogPostData = (arg: unknown): arg is BlogPostData => {
-  return (arg as BlogPostData).body !== undefined;
+  return (arg as BlogPostData).rawMarkdownBody !== undefined;
 };
 
 /**
@@ -77,7 +77,7 @@ const BlogPost = (props: BlogPostProps) => {
   const withContent = isBlogPostData(post);
   let imagePath: string | undefined = undefined;
   if (withContent) {
-    imagePath = getImagePath(post.body);
+    imagePath = getImagePath(post.rawMarkdownBody);
     const imageFiles = useStaticQuery(graphql`
       query {
         images: allFile(
@@ -117,7 +117,7 @@ const BlogPost = (props: BlogPostProps) => {
           </Typography>
           {withContent && (
             <Typography variant={blogPostTheme.body} paragraph>
-              {post.body.substring(0, 100)}
+              {post.rawMarkdownBody.substring(0, 100)}
             </Typography>
           )}
           <Typography variant={blogPostTheme.more} color="primary">

@@ -10,12 +10,12 @@ const BlogCategory = ({ data }: any) => {
 
 export const query = graphql`
   query ($category: String) {
-    mdx(frontmatter: { category: { eq: $category } }) {
+    markdownRemark(frontmatter: { category: { eq: $category } }) {
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
       }
-      body
+      rawMarkdownBody
     }
   }
 `;
