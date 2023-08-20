@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkyk_s_tech_blog=self.webpackChunkyk_s_tech_blog||[]).push([[911],{6766:function(e,t,l){l.r(t);var a=l(7294);t.default=e=>{let{data:t}=e;return a.createElement(a.Fragment,null)}}}]);
+//# sourceMappingURL=component---src-pages-blog-markdown-remark-frontmatter-category-tsx-8dd6cd6abfc0f9a124e9.js.map
